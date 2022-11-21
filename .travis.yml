@@ -14,5 +14,13 @@ after_success:
   - docker build -t petorian/multi-nginx ./nginx
   - docker build -t petorian/multi-server ./server
   - docker build -t petorian/multi-worker ./worker
+  #login to docker cli
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #push images to docker hub
+  - docker push petorian/multi-client
+  - docker push petorian/multi-nginx 
+  - docker push petorian/multi-server
+  - docker push petorian/multi-worker
+
 
 
